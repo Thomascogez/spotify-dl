@@ -85,7 +85,7 @@ if (!input[0]) {
           songData = await spotifye.getTrack(URL);
           const songName = songData.name + ' ' + songData.artists[0];
           
-          const output = path.resolve(outputDir, await filter.validateOutput(`${songData.name} - ${songData.artists[0]}.mp3`));
+          const output = path.resolve(outputDir);
           spinner.info(`Saving Song to: ${output}`);
 
           spinner.succeed(`Song: ${songData.name} - ${songData.artists[0]}`);
@@ -102,7 +102,7 @@ if (!input[0]) {
           var cacheCounter = 0;
           songData = await spotifye.getPlaylist(URL);
 
-          var dir = path.join(outputDir, filter.validateOutputSync(songData.name));
+          var dir = path.join(outputDir);
           spinner.info(`Total Songs: ${songData.total_tracks}`)
           spinner.info(`Saving Playlist: ${dir}`);
           
@@ -117,7 +117,7 @@ if (!input[0]) {
 
             const ytLink = await getLink(songNam.name + ' ' + songNam.artists[0]);
 
-            const output = path.resolve(outputDir, filter.validateOutputSync(songData.name), filter.validateOutputSync(`${songNam.name} - ${songNam.artists[0]}.mp3`));
+            const output = path.resolve(outputDir);
             spinner.start("Downloading...");
 
             download(ytLink, output, spinner, async function() {
@@ -141,7 +141,7 @@ if (!input[0]) {
           songData = await spotifye.getAlbum(URL);
           songData.name = songData.name.replace('/', '-');
           
-          var dir = path.join(outputDir, await filter.validateOutput(songData.name));
+          var dir = path.join(outputDir);
 
           spinner.info(`Total Songs: ${songData.total_tracks}`);
           spinner.info(`Saving Album: ` + path.join(outputDir, songData.name));
@@ -157,7 +157,7 @@ if (!input[0]) {
 
             const ytLink = await getLink(songNam.name + ' ' + songNam.artists[0]);
 
-            const output = path.resolve(outputDir, await filter.validateOutput(songData.name, `${songNam.name} - ${songNam.artists[0]}.mp3`));
+            const output = path.resolve(outputDir);
             spinner.start("Downloading...");
 
             download(ytLink, output, spinner, async function () {
